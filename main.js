@@ -1,8 +1,9 @@
 let canvas;
 let canvasContext;
-let randomCordinates = Math.floor((Math.random()*(500-0)) + 0);
-let appleX = randomCordinates;
-let appleY = randomCordinates;
+let randomCordinatesX = Math.floor((Math.random()*(550-10)) + 10);
+let randomCordinatesY = Math.floor((Math.random()*(250-10)) + 10);
+let appleX = randomCordinatesX;
+let appleY = randomCordinatesY;
 let snakeX = 50;
 let snakeY;
 let snakeSpeed = 5;
