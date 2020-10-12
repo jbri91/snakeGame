@@ -82,3 +82,25 @@ Scrimba tutorial
 Implement what you learn at the same time.
 Google is your friend 
 
+Week 2
+Create a second branch in Git for week number two.
+Create gameboard
+Move the snake across the game board
+control the snake using the keyboard
+draw the apple on the game board
+when complete, merge it into the master branch
+
+Robust funcitonality
+Getting information
+height, width
+Drawing Shapes, images, etc.
+sdmm.link/html-canvas
+sdmm.link/set-interval
+
+
+How to Depict Movement
+Run a game 'loop'
+Draw the images on the canvasUpdate the underlying data (snake, apple)
+
+Think about movement as a flip-book animations.
+Snake moves like links in a chain
