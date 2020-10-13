@@ -53,7 +53,6 @@ window.onload = function () {
   canvasContext = canvas.getContext("2d");
   let framesPerSecond = 30;
   setInterval(function () {
-    moveApple();
     drawEverything();
   }, 1000 / framesPerSecond);
 };
@@ -62,6 +61,7 @@ function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   moveSnake();
+  moveApple();
   drawSnake();
   drawApple();
   eatApple();
