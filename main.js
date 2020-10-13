@@ -68,6 +68,18 @@ function drawEverything() {
 }
 
 function moveSnake() {
+  if (
+    (rightPressed && upperPressed) ||
+    (rightPressed && lowerPressed) ||
+    (leftPressed && upperPressed) ||
+    (leftPressed && lowerPressed)
+  ) {
+    rightPress = false;
+    upperPressed = false;
+    lowerPressed = false;
+    leftPressed = false;
+  }
+
   if (rightPressed) {
     snakeX += 10;
   } else if (leftPressed) {
