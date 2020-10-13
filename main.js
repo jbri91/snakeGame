@@ -105,13 +105,12 @@ function drawSnake() {
   canvasContext.fillRect(snakePart.x, snakePart.y, snakeLength, snakeWidth);
   
   if (rightPressed) {
-    snake[i].x += snakeSpeed; 
+    snake[i].x += snakeSpeed;
   } else if (leftPressed) {
     snake[i].x -= snakeSpeed;
   }
   if (upperPressed) {
     snake[i].y -= snakeSpeed;
-    
   } else if (lowerPressed) {
     snake[i].y += snakeSpeed;
   }
