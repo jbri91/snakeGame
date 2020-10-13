@@ -73,23 +73,23 @@ function drawEverything() {
 
 function moveSnake() {
     if (rightPressed) {
-    snakeX += snake.speed;
+    snake.body[0].x += snake.speed;
   } else if (leftPressed) {
-      snakeX -= snake.speed;
+    snake.body[0].x -= snake.speed;
   }
 
   if (upperPressed) {
-    snakeY -= snake.speed;
+    snake.body[0].y -= snake.speed;
   } else if (lowerPressed) {
-    snakeY += snake.speed;
+    snake.body[0].y += snake.speed;
     
   }
 
   if (
-    snakeX == canvas.width - snake.width / 2 ||
-    snakeX < 0 ||
-    snakeY == canvas.height - snake.length / 2 ||
-    snakeY < 0
+    snake.body[0].x == canvas.width - snake.width / 2 ||
+    snake.body[0].x < 0 ||
+    snake.body[0].y == canvas.height - snake.length / 2 ||
+    snake.body[0].y < 0
   ) {
     alert("You hit the wall. YOU LOSE!");
   }
@@ -100,7 +100,7 @@ function moveApple() {}
 
 function drawSnake() {
   canvasContext.fillStyle = "white";
-  canvasContext.fillRect(snakeX, snakeY, snake.length, snake.width);
+  canvasContext.fillRect(snake.body[0].x, snake.body[0].y, snake.length, snake.width);
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(380, 300, snake.length, snake.width);
   canvasContext.fillStyle = "blue";
