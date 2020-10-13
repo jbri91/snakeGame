@@ -1,3 +1,6 @@
+#gameCanvas {
+    border: 10px solid darkgreen;
+}
 h1 {
     font-size: 70px;
     color: darkgreen;

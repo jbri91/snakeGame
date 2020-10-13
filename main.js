@@ -5,8 +5,8 @@ let randomCordinatesY = Math.floor(Math.random() * (250 - 10) + 10);
 let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
 let appleRadius = 10;
-let snakeX = 50;
-let snakeY = 50;
+let snakeX = 400;
+let snakeY = 300;
 let snakeLength = 20;
 let snakeWidth = 20;
 let snakeSpeed = 5;
@@ -92,13 +92,15 @@ function moveSnake() {
 
 function moveApple() {}
 
+
+
 function drawSnake() {
   canvasContext.fillStyle = "white";
   canvasContext.fillRect(snakeX, snakeY, snakeLength, snakeWidth);
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(30, 50, snakeLength, snakeWidth);
+  canvasContext.fillRect(380,300, snakeLength, snakeWidth);
   canvasContext.fillStyle = "blue";
-  canvasContext.fillRect(10, 50, snakeLength, snakeWidth);
+  canvasContext.fillRect(360, 300, snakeLength, snakeWidth);
 }
 
 function drawApple() {
