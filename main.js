@@ -10,16 +10,18 @@ let rightPressed = false;
 let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
-let snake = {
-  body: [
+let snake = [
     { x: 400, y: 300},
-    { x: 380, y: 300},
-    { x: 360, y: 300},
-  ],
-  length: 20,
-  width: 20,
-  speed: 10
-}
+    { x: 350, y: 300},
+    { x: 300, y: 300},
+
+  ];
+
+
+  let snakeLength = 50;
+  let snakeWidth = 20;
+  let snakeSpeed = 10;
+
 const score = document.getElementById("score");
 const highScore = document.getElementById("highScore");
 
@@ -63,46 +65,56 @@ function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   moveSnake();
-  moveApple();
   drawSnake();
   drawApple();
   eatApple();
 }
 
 function moveSnake() {
-    if (rightPressed) {
-    snake.body[0].x += snake.speed;
-  } else if (leftPressed) {
-    snake.body[0].x -= snake.speed;
-  }
+  //   if (rightPressed) {
+  //   snake[0].x += snakeSpeed;
+  // } else if (leftPressed) {
+  //   snake[0].x -= snakeSpeed;
+  // }
 
-  if (upperPressed) {
-    snake.body[0].y -= snake.speed;
-  } else if (lowerPressed) {
-    snake.body[0].y += snake.speed;
+  // if (upperPressed) {
+  //   snake[0].y -= snakeSpeed;
+  // } else if (lowerPressed) {
+  //   snake[0].y += snakeSpeed;
     
-  }
+  // }
 
   if (
-    snake.body[0].x == canvas.width - snake.width / 2 ||
-    snake.body[0].x < 0 ||
-    snake.body[0].y == canvas.height - snake.length / 2 ||
-    snake.body[0].y < 0
+    snake[0].x == canvas.width - snakeWidth / 2 ||
+    snake[0].x < 0 ||
+    snake[0].y == canvas.height - snakeLength / 2 ||
+    snake[0].y < 0
   ) {
     alert("You hit the wall. YOU LOSE!");
   }
 }
 
-function moveApple() {}
 
 
 function drawSnake() {
-  canvasContext.fillStyle = "white";
-  canvasContext.fillRect(snake.body[0].x, snake.body[0].y, snake.length, snake.width);
-  canvasContext.fillStyle = "green";
-  canvasContext.fillRect(380, 300, snake.length, snake.width);
-  canvasContext.fillStyle = "blue";
-  canvasContext.fillRect(360, 300, snake.length, snake.width);
+
+  for (let i = 0; i < snake.length; i++) {
+  const snakePart = snake[i];
+  canvasContext.fillStyle = 'green';
+  canvasContext.fillRect(snakePart.x, snakePart.y, snakeLength, snakeWidth);
+  
+  if (rightPressed) {
+    snake[i].x += snakeSpeed;
+  } else if (leftPressed) {
+    snake[i].x -= snakeSpeed;
+  }
+  if (upperPressed) {
+    snake[i].y -= snakeSpeed;
+    
+  } else if (lowerPressed) {
+    snake[i].y += snakeSpeed;
+  }
+}
 }
 
 function drawApple() {
@@ -116,21 +128,24 @@ function appleReset() {}
 
 let points = 0;
 let highPoints = 0;
+
 function eatApple() {
-  if (
-    snake.body[0].x < appleX &&
-    snake.body[0].x > appleX - 15 &&
-    snake.body[0].y < appleY &&
-    snake.body[0].y > appleY - 15
+    if (
+    snake[0].x < appleX &&
+    snake[0].x > appleX - 15 &&
+    snake[0].y < appleY &&
+    snake[0].y > appleY - 15
   ) {
     console.log("The snake ate the apple");
     points++;
     highPoints++;
     score.innerText = "Score: " + points;
     highScore.innerText = "High Score: " + highPoints;
+      
   }
 }
 
-console.log(appleX, appleY);
-console.log(snake.body[0].x, snake.body[0].y);
-console.log(snake.body[1].x)
+// console.log(snake[0].x)
+// console.log(snake[0].y)
+const snakePart = snake[0];
+console.log(snakePart.x)
