@@ -5,8 +5,6 @@ let randomCordinatesY = Math.floor(Math.random() * (250 - 10) + 10);
 let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
 let appleRadius = 10;
-let snakeX = 400;
-let snakeY = 300;
 let showingLoseScreen = false;
 let rightPressed = false;
 let leftPressed = false;
@@ -120,10 +118,10 @@ let points = 0;
 let highPoints = 0;
 function eatApple() {
   if (
-    snakeX < appleX &&
-    snakeX > appleX - 15 &&
-    snakeY < appleY &&
-    snakeY > appleY - 15
+    snake.body[0].x < appleX &&
+    snake.body[0].x > appleX - 15 &&
+    snake.body[0].y < appleY &&
+    snake.body[0].y > appleY - 15
   ) {
     console.log("The snake ate the apple");
     points++;
@@ -134,4 +132,4 @@ function eatApple() {
 }
 
 console.log(appleX, appleY);
-console.log(snakeX, snakeY);
+console.log(snake.body[0].x, snake.body[0].y);
