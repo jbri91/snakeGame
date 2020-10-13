@@ -7,14 +7,21 @@ let appleY = randomCordinatesY;
 let appleRadius = 10;
 let snakeX = 400;
 let snakeY = 300;
-let snakeLength = 20;
-let snakeWidth = 20;
-let snakeSpeed = 10;
 let showingLoseScreen = false;
 let rightPressed = false;
 let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
+let snake = {
+  body: [
+    { x: 400, y: 300},
+    { x: 380, y: 300},
+    { x: 360, y: 300},
+  ],
+  length: 20,
+  width: 20,
+  speed: 10
+}
 const score = document.getElementById("score");
 const highScore = document.getElementById("highScore");
 
@@ -66,22 +73,22 @@ function drawEverything() {
 
 function moveSnake() {
     if (rightPressed) {
-    snakeX += snakeSpeed;
+    snakeX += snake.speed;
   } else if (leftPressed) {
-      snakeX -= snakeSpeed;
+      snakeX -= snake.speed;
   }
 
   if (upperPressed) {
-    snakeY -= snakeSpeed;
+    snakeY -= snake.speed;
   } else if (lowerPressed) {
-    snakeY += snakeSpeed;
+    snakeY += snake.speed;
     
   }
 
   if (
-    snakeX == canvas.width - snakeWidth / 2 ||
+    snakeX == canvas.width - snake.width / 2 ||
     snakeX < 0 ||
-    snakeY == canvas.height - snakeLength / 2 ||
+    snakeY == canvas.height - snake.length / 2 ||
     snakeY < 0
   ) {
     alert("You hit the wall. YOU LOSE!");
@@ -90,26 +97,14 @@ function moveSnake() {
 
 function moveApple() {}
 
-let snake = {
-  
-  snakeLength: 20,
-  snakeWidth: 20,
-  snakeSpeed: 10,
-}
-
-let snakeBody = [
-  { x: 400, y: 300, snakeLength, snakeWidth},
-  { x: 380, y: 300, snakeLength, snakeWidth},
-  { x: 360, y: 300, snakeLength, snakeWidth},
-];
 
 function drawSnake() {
   canvasContext.fillStyle = "white";
-  canvasContext.fillRect(snakeX, snakeY, snakeLength, snakeWidth);
+  canvasContext.fillRect(snake.body[0].x, snake.body[0].y, snake.length, snake.width);
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(380, 300, snakeLength, snakeWidth);
+  canvasContext.fillRect(380, 300, snake.length, snake.width);
   canvasContext.fillStyle = "blue";
-  canvasContext.fillRect(360, 300, snakeLength, snakeWidth);
+  canvasContext.fillRect(360, 300, snake.length, snake.width);
 }
 
 function drawApple() {
