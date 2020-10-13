@@ -24,14 +24,25 @@ document.addEventListener("keydown", keyDownHandler, false);
 function keyDownHandler(e) {
   if (e.key == "Right" || e.key == "ArrowRight") {
     rightPressed = true;
+    leftPressed = false;
+    lowerPressed = false;
+    upperPressed = false;
   } else if (e.key == "Left" || e.key == "ArrowLeft") {
     leftPressed = true;
+    rightPressed = false;
+    lowerPressed = false;
+    upperPressed = false;
   }
-
   if (e.key == "Up" || e.key == "ArrowUp") {
     upperPressed = true;
+    lowerPressed = false;
+    leftPressed = false;
+    rightPressed = false;
   } else if (e.key == "Down" || e.key == "ArrowDown") {
     lowerPressed = true;
+    upperpressed = false;
+    leftPressed = false;
+    rightPressed = false;
   }
 }
 
@@ -68,28 +79,19 @@ function drawEverything() {
 }
 
 function moveSnake() {
-  if (
-    (rightPressed && upperPressed) ||
-    (rightPressed && lowerPressed) ||
-    (leftPressed && upperPressed) ||
-    (leftPressed && lowerPressed)
-  ) {
-    rightPressed = false;
-    upperPressed = false;
-    lowerPressed = false;
-    leftPressed = false;
-  }
+
 
   if (rightPressed) {
     snakeX += 10;
   } else if (leftPressed) {
-    snakeX -= 10;
+      snakeX -= 10;
   }
 
   if (upperPressed) {
     snakeY -= 10;
   } else if (lowerPressed) {
     snakeY += 10;
+    
   }
 
   if (
