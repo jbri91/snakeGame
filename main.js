@@ -4,6 +4,7 @@ let randomCordinatesX = Math.floor(Math.random() * (550 - 10) + 10);
 let randomCordinatesY = Math.floor(Math.random() * (250 - 10) + 10);
 let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
+let appleRadius = 10;
 let snakeX = 50;
 let snakeY = 50;
 let snakeLength = 20;
@@ -14,6 +15,8 @@ let rightPressed = false;
 let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
+score = document.getElementById('score');
+highScore = document.getElementById('highScore');
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -97,14 +100,29 @@ function drawSnake() {
 function drawApple() {
   canvasContext.fillStyle = "red";
   canvasContext.beginPath();
-  canvasContext.arc(appleX, appleY, 10, 0, Math.PI * 2, true);
+  canvasContext.arc(appleX, appleY, appleRadius, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
 
-function appleReset() {}
-
-function eatApple() {
-    if(snakeX == appleX && snakeY == appleY) {
-        console.log('The snake ate the apple')
-    }
+function appleReset() {
+    drawApple
 }
+let points = 0;
+let highPoints = 0;
+function eatApple() {
+  if (
+    snakeX < appleX &&
+    snakeX > appleX - 15 &&
+    snakeY < appleY &&
+    snakeY > appleY - 15
+  ) {
+    console.log("The snake ate the apple");
+    points++
+    highPoints++
+    score.innerText = 'Score: ' + points;
+    highScore.innerText = 'High Score: ' + highPoints; 
+  }
+}
+
+console.log(appleX, appleY);
+console.log(snakeX, snakeY);
