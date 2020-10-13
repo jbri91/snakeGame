@@ -92,13 +92,17 @@ function moveSnake() {
 
 function moveApple() {}
 
-
+let snakeBody = [
+  { x: 400, y: 300 },
+  { x: 380, y: 300 },
+  { x: 360, y: 300 },
+];
 
 function drawSnake() {
   canvasContext.fillStyle = "white";
   canvasContext.fillRect(snakeX, snakeY, snakeLength, snakeWidth);
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(380,300, snakeLength, snakeWidth);
+  canvasContext.fillRect(380, 300, snakeLength, snakeWidth);
   canvasContext.fillStyle = "blue";
   canvasContext.fillRect(360, 300, snakeLength, snakeWidth);
 }
@@ -110,8 +114,7 @@ function drawApple() {
   canvasContext.fill();
 }
 
-function appleReset() {
-}
+function appleReset() {}
 
 let points = 0;
 let highPoints = 0;
