@@ -1,13 +1,16 @@
 h1 {
+    font-size: 70px;
     color: darkgreen;
     text-align: center;
 }
 
 h2 {
+    font-size: 30px;
     text-align: center;
 }
 
 h3 {
+    font-size: 30px;
     text-align: center;;
 }
 
