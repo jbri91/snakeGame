@@ -111,7 +111,6 @@ function drawSnake() {
   }
   if (upperPressed) {
     snake[i].y -= snakeSpeed;
-    snake[0].y += 20;
   } else if (lowerPressed) {
     snake[i].y += snakeSpeed;
   }
