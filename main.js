@@ -1,7 +1,7 @@
 let canvas;
 let canvasContext;
-let randomCordinatesX = Math.floor(Math.random() * (550 - 10) + 10);
-let randomCordinatesY = Math.floor(Math.random() * (250 - 10) + 10);
+let randomCordinatesX = Math.floor(Math.random() * (800 - 20) + 20);
+let randomCordinatesY = Math.floor(Math.random() * (500 - 20) + 20);
 let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
 let appleRadius = 10;
@@ -133,3 +133,4 @@ function eatApple() {
 
 console.log(appleX, appleY);
 console.log(snake.body[0].x, snake.body[0].y);
+console.log(snake.body[1].x)
