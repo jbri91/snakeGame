@@ -12,13 +12,13 @@ let upperPressed = false;
 let lowerPressed = false;
 let snake = [
     { x: 400, y: 300},
-    { x: 350, y: 300},
-    { x: 300, y: 300},
+    { x: 370, y: 300},
+    { x: 340, y: 300},
 
   ];
 
 
-  let snakeLength = 50;
+  let snakeLength = 30;
   let snakeWidth = 20;
   let snakeSpeed = 10;
 
@@ -87,13 +87,14 @@ function moveSnake() {
   if (
     snake[0].x == canvas.width - snakeWidth / 2 ||
     snake[0].x < 0 ||
-    snake[0].y == canvas.height - snakeLength / 2 ||
+    snake[0].y == canvas.height - snakeWidth / 2 ||
     snake[0].y < 0
   ) {
     alert("You hit the wall. YOU LOSE!");
   }
 }
 
+console.log(snake[0].y)
 
 
 function drawSnake() {
@@ -104,7 +105,7 @@ function drawSnake() {
   canvasContext.fillRect(snakePart.x, snakePart.y, snakeLength, snakeWidth);
   
   if (rightPressed) {
-    snake[i].x += snakeSpeed;
+    snake[i].x += snakeSpeed; 
   } else if (leftPressed) {
     snake[i].x -= snakeSpeed;
   }
