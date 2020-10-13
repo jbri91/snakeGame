@@ -15,8 +15,8 @@ let rightPressed = false;
 let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
-score = document.getElementById('score');
-highScore = document.getElementById('highScore');
+score = document.getElementById("score");
+highScore = document.getElementById("highScore");
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -105,8 +105,8 @@ function drawApple() {
 }
 
 function appleReset() {
-    drawApple
 }
+
 let points = 0;
 let highPoints = 0;
 function eatApple() {
@@ -117,10 +117,10 @@ function eatApple() {
     snakeY > appleY - 15
   ) {
     console.log("The snake ate the apple");
-    points++
-    highPoints++
-    score.innerText = 'Score: ' + points;
-    highScore.innerText = 'High Score: ' + highPoints; 
+    points++;
+    highPoints++;
+    score.innerText = "Score: " + points;
+    highScore.innerText = "High Score: " + highPoints;
   }
 }
 
