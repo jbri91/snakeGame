@@ -104,3 +104,29 @@ Draw the images on the canvasUpdate the underlying data (snake, apple)
 
 Think about movement as a flip-book animations.
 Snake moves like links in a chain
+
+Week 3
+Boundary detection
+Randomize food placement
+Create a branch in Git for week number three
+Set up a debugging environment
+Create functionality: Snake boundary detection
+Random apple placement
+When completed, merge the branches.
+
+Set up a Debugging Environment
+- Purpose: To make testing functionality easy.
+Reduce time spent 'testing'
+Avoid making permanent changes to your code.
+sdmm.link/debug-env
+Focus on the snake head and the board being a grid.
+
+During each game iteration: 
+check if the snake head is touching any of the four walls or the apple.
+
+Come up with your own solutions.
+
+Create random apple placement functionality.
+Focus on random placement:
+within the gameboard dimension
+but not where the snake is currently
