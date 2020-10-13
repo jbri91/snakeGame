@@ -19,7 +19,7 @@ score = document.getElementById("score");
 highScore = document.getElementById("highScore");
 
 document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
+// document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
   if (e.key == "Right" || e.key == "ArrowRight") {
@@ -35,18 +35,18 @@ function keyDownHandler(e) {
   }
 }
 
-function keyUpHandler(e) {
-  if (e.key == "Right" || e.key == "ArrowRight") {
-    rightPressed = false;
-  } else if (e.key == "Left" || e.key == "ArrowLeft") {
-    leftPressed = false;
-  }
-  if (e.key == "Up" || e.key == "ArrowUp") {
-    upperPressed = false;
-  } else if (e.key == "Down" || e.key == "ArrowDown") {
-    lowerPressed = false;
-  }
-}
+// function keyUpHandler(e) {
+//   if (e.key == "Right" || e.key == "ArrowRight") {
+//     rightPressed = false;
+//   } else if (e.key == "Left" || e.key == "ArrowLeft") {
+//     leftPressed = false;
+//   }
+//   if (e.key == "Up" || e.key == "ArrowUp") {
+//     upperPressed = false;
+//   } else if (e.key == "Down" || e.key == "ArrowDown") {
+//     lowerPressed = false;
+//   }
+// }
 
 window.onload = function () {
   canvas = document.getElementById("gameCanvas");
@@ -74,7 +74,7 @@ function moveSnake() {
     (leftPressed && upperPressed) ||
     (leftPressed && lowerPressed)
   ) {
-    rightPress = false;
+    rightPressed = false;
     upperPressed = false;
     lowerPressed = false;
     leftPressed = false;
@@ -105,9 +105,9 @@ function moveSnake() {
 function moveApple() {}
 
 let snakeBody = [
-  { x: 400, y: 300 },
-  { x: 380, y: 300 },
-  { x: 360, y: 300 },
+  { x: 400, y: 300, snakeLength, snakeWidth},
+  { x: 380, y: 300, snakeLength, snakeWidth},
+  { x: 360, y: 300, snakeLength, snakeWidth},
 ];
 
 function drawSnake() {
