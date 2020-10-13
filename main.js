@@ -100,7 +100,7 @@ function moveApple() {}
 
 function drawSnake() {
   canvasContext.fillStyle = "white";
-  canvasContext.fillRect(snake.body[0].x, snake.body[0].y, snake.length, snake.width);
+  canvasContext.fillRect(snakeX, snakeY, snake.length, snake.width);
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(380, 300, snake.length, snake.width);
   canvasContext.fillStyle = "blue";
