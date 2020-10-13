@@ -7,6 +7,7 @@ let appleY = randomCordinatesY;
 let snakeX = 50;
 let snakeY = 50;
 let snakeLength = 20;
+let snakeWidth = 20;
 let snakeSpeed = 5;
 let showingWinScreen = true;
 let rightPressed = false;
@@ -57,26 +58,32 @@ window.onload = function () {
 function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+  moveSnake();
   drawSnake();
   drawApple();
-  moveSnake();
+  eatApple();
 }
 
 function moveSnake() {
   if (rightPressed) {
     snakeX += 10;
-    console.log(snakeX);
   } else if (leftPressed) {
     snakeX -= 10;
-    console.log(snakeX);
   }
 
   if (upperPressed) {
     snakeY -= 10;
-    console.log(snakeY);
   } else if (lowerPressed) {
     snakeY += 10;
-    console.log(snakeY);
+  }
+
+  if (
+    snakeX == canvas.width - snakeWidth / 2 ||
+    snakeX < 0 ||
+    snakeY == canvas.height - snakeLength / 2 ||
+    snakeY < 0
+  ) {
+    alert("You hit the wall. YOU LOSE!");
   }
 }
 
@@ -84,7 +91,7 @@ function moveApple() {}
 
 function drawSnake() {
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(snakeX, snakeY, snakeLength, 20);
+  canvasContext.fillRect(snakeX, snakeY, snakeLength, snakeWidth);
 }
 
 function drawApple() {
@@ -95,3 +102,9 @@ function drawApple() {
 }
 
 function appleReset() {}
+
+function eatApple() {
+    if(snakeX == appleX && snakeY == appleY) {
+        console.log('The snake ate the apple')
+    }
+}
