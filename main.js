@@ -66,24 +66,11 @@ function drawEverything() {
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   moveSnake();
   drawSnake();
-  drawApple();
   eatApple();
+  drawApple();
 }
 
 function moveSnake() {
-  //   if (rightPressed) {
-  //   snake[0].x += snakeSpeed;
-  // } else if (leftPressed) {
-  //   snake[0].x -= snakeSpeed;
-  // }
-
-  // if (upperPressed) {
-  //   snake[0].y -= snakeSpeed;
-  // } else if (lowerPressed) {
-  //   snake[0].y += snakeSpeed;
-    
-  // }
-
   if (
     snake[0].x == canvas.width - snakeWidth / 2 ||
     snake[0].x < 0 ||
@@ -141,7 +128,6 @@ function eatApple() {
     highPoints++;
     score.innerText = "Score: " + points;
     highScore.innerText = "High Score: " + highPoints;
-      
   }
 }
 
