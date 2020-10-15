@@ -97,7 +97,16 @@ function drawSnake() {
     snake[i].x -= snakeSpeed;
   }
   if (upperPressed) {
+
+    
     snake[i].y -= snakeSpeed;
+    if (snake[i].y < snake[1].y) {
+      snake[0].y -= snakeSpeed;
+      snake[1].x = snake[0].x;
+      snake[2].x += 20
+    }
+
+
   } else if (lowerPressed) {
     snake[i].y += snakeSpeed;
   }
