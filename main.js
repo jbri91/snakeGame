@@ -6,20 +6,25 @@ let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
 let appleRadius = 10;
 let showingLoseScreen = false;
-let rightPressed = false;
+let rightPressed = false;5
 let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
 let snake = [
     { x: 400, y: 300},
-    { x: 370, y: 300},
-    { x: 340, y: 300},
+    { x: 390, y: 300},
+    { x: 380, y: 300},
+];
 
-  ];
+  let snakeCopy = [
+    { x: 400, y: 300},
+    { x: 390, y: 300},
+    { x: 380, y: 300},
+  ]
 
 
-  let snakeLength = 30;
-  let snakeWidth = 20;
+  let snakeLength = 100;
+  let snakeWidth = 10;
   let snakeSpeed = 10;
 
 const score = document.getElementById("score");
@@ -65,12 +70,6 @@ function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   moveSnake();
-  drawSnake();
-  eatApple();
-  drawApple();
-}
-
-function moveSnake() {
   if (
     snake[0].x == canvas.width - snakeWidth / 2 ||
     snake[0].x < 0 ||
@@ -79,6 +78,27 @@ function moveSnake() {
   ) {
     alert("You hit the wall. YOU LOSE!");
   }
+  drawSnake();
+  eatApple();
+  drawApple();
+}
+
+function moveSnake() {
+  
+  for (let i = 0; i < snake.length; i++) {
+  
+  
+  if (rightPressed) {
+    snake[i].x += snakeSpeed;
+  } else if (leftPressed) {
+    snake[i].x -= snakeSpeed;
+  }
+  if (upperPressed) {
+    snake[i].y -= snakeSpeed;
+  } else if (lowerPressed) {
+    snake[i].y += snakeSpeed;
+  }
+} 
 }
 
 console.log(snake[0].y)
@@ -90,26 +110,6 @@ function drawSnake() {
   const snakePart = snake[i];
   canvasContext.fillStyle = 'green';
   canvasContext.fillRect(snakePart.x, snakePart.y, snakeLength, snakeWidth);
-  
-  if (rightPressed) {
-    snake[i].x += snakeSpeed;
-  } else if (leftPressed) {
-    snake[i].x -= snakeSpeed;
-  }
-  if (upperPressed) {
-
-    
-    snake[i].y -= snakeSpeed;
-    if (snake[i].y < snake[1].y) {
-      snake[0].y -= snakeSpeed;
-      snake[1].x = snake[0].x;
-      snake[2].x += 20
-    }
-
-
-  } else if (lowerPressed) {
-    snake[i].y += snakeSpeed;
-  }
 }
 }
 
