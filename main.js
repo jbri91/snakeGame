@@ -11,19 +11,19 @@ let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
 let snake = [
-    { x: 400, y: 300},
-    { x: 390, y: 300},
+    { x: 400, y: 300}, 
     { x: 380, y: 300},
+    { x: 360, y: 300},
 ];
 
   let snakeCopy = [
     { x: 400, y: 300},
-    { x: 390, y: 300},
     { x: 380, y: 300},
+    { x: 360, y: 300},
   ]
 
 
-  let snakeLength = 100;
+  let snakeLength = 20;
   let snakeWidth = 10;
   let snakeSpeed = 10;
 
@@ -70,10 +70,11 @@ function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   moveSnake();
+
   if (
-    snake[0].x == canvas.width - snakeWidth / 2 ||
+    snake[0].x == canvas.width ||
     snake[0].x < 0 ||
-    snake[0].y == canvas.height - snakeWidth / 2 ||
+    snake[0].y == canvas.height ||
     snake[0].y < 0
   ) {
     alert("You hit the wall. YOU LOSE!");
