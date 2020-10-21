@@ -95,6 +95,10 @@ function moveSnake() {
     snake[i].x -= snakeSpeed;
   }
   if (upperPressed) {
+  snake[0].y -= snakeSpeed;
+  snake[1].x = snake[0].x;
+  snake[2].x = snakeCopy[1].x;
+
     // snake[i].y -= snakeSpeed;
   } else if (lowerPressed) {
     snake[i].y += snakeSpeed;
