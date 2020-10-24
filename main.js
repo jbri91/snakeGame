@@ -6,7 +6,7 @@ let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
 let appleRadius = 10;
 let showingLoseScreen = false;
-let rightPressed = false;5
+let rightPressed = false;
 let leftPressed = false;
 let upperPressed = false;
 let lowerPressed = false;
@@ -19,7 +19,7 @@ let snake = [
   let snakeCopy = [
     { x: 400, y: 300},
     { x: 380, y: 300},
-    { x: 360, y: 300},
+    { x: 360, y: 300}, 
   ]
 
 
@@ -30,32 +30,32 @@ let snake = [
 const score = document.getElementById("score");
 const highScore = document.getElementById("highScore");
 
-document.addEventListener("keydown", keyDownHandler, false);
+// document.addEventListener("keydown", keyDownHandler, false);
 
-function keyDownHandler(e) {
-  if (e.key == "Right" || e.key == "ArrowRight") {
-    rightPressed = true;
-    leftPressed = false;
-    lowerPressed = false;
-    upperPressed = false;
-  } else if (e.key == "Left" || e.key == "ArrowLeft") {
-    leftPressed = true;
-    rightPressed = false;
-    lowerPressed = false;
-    upperPressed = false;
-  }
-  if (e.key == "Up" || e.key == "ArrowUp") {
-    upperPressed = true;
-    lowerPressed = false;
-    leftPressed = false;
-    rightPressed = false;
-  } else if (e.key == "Down" || e.key == "ArrowDown") {
-    lowerPressed = true;
-    upperPressed = false;
-    leftPressed = false;
-    rightPressed = false;
-  }
-}
+// function keyDownHandler(e) {
+//   if (e.key == "Right" || e.key == "ArrowRight") {
+//     rightPressed = true;
+//     leftPressed = false;
+//     lowerPressed = false;
+//     upperPressed = false;
+//   } else if (e.key == "Left" || e.key == "ArrowLeft") {
+//     leftPressed = true;
+//     rightPressed = false;
+//     lowerPressed = false;
+//     upperPressed = false;
+//   }
+//   if (e.key == "Up" || e.key == "ArrowUp") {
+//     upperPressed = true;
+//     lowerPressed = false;
+//     leftPressed = false;
+//     rightPressed = false;
+//   } else if (e.key == "Down" || e.key == "ArrowDown") {
+//     lowerPressed = true;
+//     upperPressed = false;
+//     leftPressed = false;
+//     rightPressed = false;
+//   }
+// }
 
 window.onload = function () {
   canvas = document.getElementById("gameCanvas");
@@ -85,27 +85,69 @@ function drawEverything() {
 }
 
 function moveSnake() {
-  
-  for (let i = 0; i < snake.length; i++) {
-  
-  
-  if (rightPressed) {
-    snake[i].x += snakeSpeed;
-  } else if (leftPressed) {
-    snake[i].x -= snakeSpeed;
-  }
-  if (upperPressed) {
-    snake[0].y = 290;
-    snake[1].x = 400;
-    snake[2].x = 390;
-    // snake[i].y -= snakeSpeed;
-  } else if (lowerPressed) {
-    snake[i].y += snakeSpeed;
-  }
-} 
+  let snakeHead = {x: snake[0].x + snakeSpeed, y: snake[0].y};
+  snake.unshift(snakeHead);
+  snake.pop();
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === '38') {
+      console.log('up');
+      // snake[i].y -= snakeSpeed;
+      //Up
+    }
+    if (event.key === '40') {
+      console.log('down')
+      // snake[i].y += snakeSpeed;
+      
+      //down
+    }
+    if (event.key === '37' ) {
+      console.log('left');
+      // snake[i].x -= snakeSpeed;
+      //left
+    }
+    if(event.key === '39' ) {
+      console.log('right');
+      // snake[i].x += snakeSpeed;
+      //right
+    }
+  })
+    
+  // document.addEventListener('keydown', function (e) {
+  //   if (e.key === '38') {
+  //     snake[i].y -= snakeSpeed;
+  //     //Up
+  //   }
+  //   if (e.key === '40') {
+  //     snake[i].y += snakeSpeed;
+  //     console.log('down')
+  //     //down
+  //   }
+  //   if (e.key === '37' ) {
+  //     snake[i].x -= snakeSpeed;
+  //     //left
+  //   }
+  //   if(e.key === '39' ) {
+  //     snake[i].x += snakeSpeed;
+  //     //right
+  //   }
 }
 
-console.log(snake[0].y)
+//   for (let i = 0; i < snake.length; i++) {
+  
+  
+//   if (rightPressed) {
+//     snake[i].x += snakeSpeed;
+//   } else if (leftPressed) {
+//     snake[i].x -= snakeSpeed;
+//   }
+//   if (upperPressed) {
+//     snake[i].y -= snakeSpeed;
+//   } else if (lowerPressed) {
+//     snake[i].y += snakeSpeed;
+//   }
+// } 
+
 
 
 function drawSnake() {
@@ -143,8 +185,3 @@ function eatApple() {
     highScore.innerText = "High Score: " + highPoints;
   }
 }
-
-// console.log(snake[0].x)
-// console.log(snake[0].y)
-const snakePart = snake[0];
-console.log(snakePart.x)
