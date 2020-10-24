@@ -30,6 +30,31 @@ let snake = [
 const score = document.getElementById("score");
 const highScore = document.getElementById("highScore");
 
+document.addEventListener("keydown", function (e) {
+  if (e.key === '38') {
+    console.log('up');
+    // snake[i].y -= snakeSpeed;
+    //Up
+  }
+  if (e.key === '40') {
+    console.log('down')
+    // snake[i].y += snakeSpeed;
+    
+    //down
+  }
+  if (e.key === '37' ) {
+    console.log('left');
+    // snake[i].x -= snakeSpeed;
+    //left
+  }
+  if(e.key === '39' ) {
+    console.log('right');
+    // snake[i].x += snakeSpeed;
+    //right
+  }
+})
+
+
 // document.addEventListener("keydown", keyDownHandler, false);
 
 // function keyDownHandler(e) {
@@ -88,30 +113,6 @@ function moveSnake() {
   let snakeHead = {x: snake[0].x + snakeSpeed, y: snake[0].y};
   snake.unshift(snakeHead);
   snake.pop();
-
-  document.addEventListener('keydown', function (event) {
-    if (event.key === '38') {
-      console.log('up');
-      // snake[i].y -= snakeSpeed;
-      //Up
-    }
-    if (event.key === '40') {
-      console.log('down')
-      // snake[i].y += snakeSpeed;
-      
-      //down
-    }
-    if (event.key === '37' ) {
-      console.log('left');
-      // snake[i].x -= snakeSpeed;
-      //left
-    }
-    if(event.key === '39' ) {
-      console.log('right');
-      // snake[i].x += snakeSpeed;
-      //right
-    }
-  })
     
   // document.addEventListener('keydown', function (e) {
   //   if (e.key === '38') {
