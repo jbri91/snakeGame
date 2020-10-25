@@ -30,58 +30,6 @@ let snake = [
 const score = document.getElementById("score");
 const highScore = document.getElementById("highScore");
 
-document.addEventListener("keydown", function (e) {
-  if (e.key === '38') {
-    console.log('up');
-    // snake[i].y -= snakeSpeed;
-    //Up
-  }
-  if (e.key === '40') {
-    console.log('down')
-    // snake[i].y += snakeSpeed;
-    
-    //down
-  }
-  if (e.key === '37' ) {
-    console.log('left');
-    // snake[i].x -= snakeSpeed;
-    //left
-  }
-  if(e.key === '39' ) {
-    console.log('right');
-    // snake[i].x += snakeSpeed;
-    //right
-  }
-})
-
-
-// document.addEventListener("keydown", keyDownHandler, false);
-
-// function keyDownHandler(e) {
-//   if (e.key == "Right" || e.key == "ArrowRight") {
-//     rightPressed = true;
-//     leftPressed = false;
-//     lowerPressed = false;
-//     upperPressed = false;
-//   } else if (e.key == "Left" || e.key == "ArrowLeft") {
-//     leftPressed = true;
-//     rightPressed = false;
-//     lowerPressed = false;
-//     upperPressed = false;
-//   }
-//   if (e.key == "Up" || e.key == "ArrowUp") {
-//     upperPressed = true;
-//     lowerPressed = false;
-//     leftPressed = false;
-//     rightPressed = false;
-//   } else if (e.key == "Down" || e.key == "ArrowDown") {
-//     lowerPressed = true;
-//     upperPressed = false;
-//     leftPressed = false;
-//     rightPressed = false;
-//   }
-// }
-
 window.onload = function () {
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
@@ -114,40 +62,30 @@ function moveSnake() {
   snake.unshift(snakeHead);
   snake.pop();
     
-  // document.addEventListener('keydown', function (e) {
-  //   if (e.key === '38') {
-  //     snake[i].y -= snakeSpeed;
-  //     //Up
-  //   }
-  //   if (e.key === '40') {
-  //     snake[i].y += snakeSpeed;
-  //     console.log('down')
-  //     //down
-  //   }
-  //   if (e.key === '37' ) {
-  //     snake[i].x -= snakeSpeed;
-  //     //left
-  //   }
-  //   if(e.key === '39' ) {
-  //     snake[i].x += snakeSpeed;
-  //     //right
-  //   }
-}
+  
+for (let i = 0; i < snake.length; i++) {
+  document.onkeydown = function() {
+    switch (window.event.keyCode) {
+        case 37:
+         console.log('Left was pressed')
+         snake[i].x -= snakeSpeed;
+         break;
+        case 38:
+          console.log('up was pressed');
+          snake[i].y -= snakeSpeed;
+         break;
+        case 39:
+    console.log('right was pressed');
+    snake[i].x += snakeSpeed;
+         break;
+        case 40:
+    console.log('down was pressed');
+    snake[i].y += snakeSpeed;
+        break;
+    }
+  }};
 
-//   for (let i = 0; i < snake.length; i++) {
-  
-  
-//   if (rightPressed) {
-//     snake[i].x += snakeSpeed;
-//   } else if (leftPressed) {
-//     snake[i].x -= snakeSpeed;
-//   }
-//   if (upperPressed) {
-//     snake[i].y -= snakeSpeed;
-//   } else if (lowerPressed) {
-//     snake[i].y += snakeSpeed;
-//   }
-// } 
+}
 
 
 
