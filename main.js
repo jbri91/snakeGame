@@ -8,18 +8,18 @@ let appleRadius = 10;
 let showingLoseScreen = false;
 let snake = [
     { x: 400, y: 300}, 
+    { x: 390, y: 300},
     { x: 380, y: 300},
-    { x: 360, y: 300},
 ];
 
   let snakeCopy = [
     { x: 400, y: 300},
-    { x: 380, y: 300},
-    { x: 360, y: 300}, 
+    { x: 390, y: 300},
+    { x: 380, y: 300}, 
   ]
 
 
-  let snakeLength = 20;
+  let snakeLength = 10;
   let snakeWidth = 10;
   let snakeSpeed = 10;
 
@@ -57,11 +57,11 @@ document.onkeydown = function() {
   switch (window.event.keyCode) {
       case 37:
        console.log('Left was pressed')
-       snake[0].x -= snakeSpeed;
-       snake[1].y = snake[0].y
-       snake[1].x = snake[0].x - 10
-       snake[2].y = snake[1].y
-       snake[2].x = snake[1].x - 10
+      //  snake[0].x -= snakeSpeed;
+       for(i = 0; i < snake.length; i++) {
+        snake[0].x -= snakeSpeed;
+
+       }
        break;
       case 38:
         console.log('up was pressed');
