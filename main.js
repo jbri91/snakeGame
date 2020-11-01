@@ -62,6 +62,7 @@ function drawEverything() {
   eatApple();
   drawApple();
   addSnakeBody();
+  appleReset();
 }
 
 function moveSnake() {
@@ -112,7 +113,16 @@ function drawApple() {
   canvasContext.fill();
 }
 
-function appleReset() {}
+function appleReset() {
+  if (
+    snake[0].x < appleX &&
+    snake[0].x > appleX - 15 &&
+    snake[0].y < appleY &&
+    snake[0].y > appleY - 15
+  ) {
+appleX = Math.floor(Math.random() * (800 - 20) + 20);
+appleY = Math.floor(Math.random() * (500 - 20) + 20);
+}}
 
 let points = 0;
 let highPoints = 0;
