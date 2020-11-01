@@ -10,6 +10,8 @@ let snake = [
     { x: 400, y: 300}, 
     { x: 390, y: 300},
     { x: 380, y: 300},
+    { x: 370, y: 300},
+    { x: 360, y: 300},
 ];
 
   let snakeCopy = [
@@ -35,6 +37,15 @@ window.onload = function () {
   }, 1000 / framesPerSecond);
 };
 
+function addSnakeBody() {
+  if(snake[0].x < appleX &&
+    snake[0].x > appleX - 15 &&
+    snake[0].y < appleY &&
+    snake[0].y > appleY - 15) {
+    snake.push(10)
+  }
+}
+
 function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
@@ -51,10 +62,15 @@ function drawEverything() {
   drawSnake();
   eatApple();
   drawApple();
+  addSnakeBody();
 }
 
-let snakeHead = {x: snake[0].x - snakeSpeed, y: snake[0].y};
-document.onkeydown = function() {
+
+
+function moveSnake() {
+  let snakeHead = {x: snake[0].x - snakeSpeed, y: snake[0].y};
+
+  document.onkeydown = function() {
   switch (window.event.keyCode) {
       case 37:
        console.log('Left was pressed')
@@ -81,14 +97,6 @@ document.onkeydown = function() {
   snake.pop();
       break;
 }};
-
-function moveSnake() {
-  // let snakeHead = {x: snake[0].x + snakeSpeed, y: snake[0].y};
-  // snake.unshift(snakeHead);
-  // snake.pop();
-    
-  // for (let i = 0; i < snake.length; i++) {
-  // }
 
 
 }
