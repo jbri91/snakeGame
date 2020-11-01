@@ -41,7 +41,7 @@ function addSnakeBody() {
     snake[0].y < appleY &&
     snake[0].y > appleY - 15
   ) {
-    snake.push(10,10);
+    snake.push(10, 10);
   }
 }
 
@@ -58,10 +58,11 @@ function drawEverything() {
   ) {
     alert("You hit the wall. YOU LOSE!");
   }
-  for(i=1; i < snake.length; i++) {
-  if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-    alert('You hit yourself! YOU LOSE!')
-  }}
+  for (i = 1; i < snake.length; i++) {
+    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+      alert("You hit yourself! YOU LOSE!");
+    }
+  }
   drawSnake();
   eatApple();
   drawApple();
@@ -122,9 +123,10 @@ function appleReset() {
     snake[0].y < appleY &&
     snake[0].y > appleY - 15
   ) {
-appleX = Math.floor(Math.random() * (800 - 20) + 20);
-appleY = Math.floor(Math.random() * (500 - 20) + 20);
-}}
+    appleX = Math.floor(Math.random() * (800 - 20) + 20);
+    appleY = Math.floor(Math.random() * (500 - 20) + 20);
+  }
+}
 
 let points = 0;
 let highPoints = 0;
