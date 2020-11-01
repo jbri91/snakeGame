@@ -4,7 +4,7 @@ let randomCordinatesX = Math.floor(Math.random() * (800 - 20) + 20);
 let randomCordinatesY = Math.floor(Math.random() * (500 - 20) + 20);
 let appleX = randomCordinatesX;
 let appleY = randomCordinatesY;
-let appleRadius = 10;
+let appleRadius = 6;
 let showingLoseScreen = false;
 let snake = [
     { x: 400, y: 300}, 
@@ -53,40 +53,32 @@ function drawEverything() {
   drawApple();
 }
 
+let snakeHead = {x: snake[0].x - snakeSpeed, y: snake[0].y};
 document.onkeydown = function() {
   switch (window.event.keyCode) {
       case 37:
        console.log('Left was pressed')
-      //  snake[0].x -= snakeSpeed;
-       for(i = 0; i < snake.length; i++) {
-        snake[0].x -= snakeSpeed;
-
-       }
+      snakeHead = {x: snake[0].x - snakeSpeed, y: snake[0].y};
+  snake.unshift(snakeHead);
+  snake.pop();
        break;
       case 38:
         console.log('up was pressed');
-        snake[0].y -= snakeSpeed;
-        snake[1].y = snake[0].y + 10
-        snake[1].x = snake[0].x
-        snake[2].y = snake[1].y + 10
-        snake[2].x = snake[1].x
-    
+        snakeHead = {x: snake[0].x, y: snake[0].y - snakeSpeed};
+        snake.unshift(snakeHead);
+        snake.pop();
        break;
       case 39:
   console.log('right was pressed');
-  snake[0].x += snakeSpeed;
-  snake[1].y = snake[0].y
-  snake[1].x = snake[0].x - 10
-  snake[2].y = snake[1].y
-  snake[2].x = snake[1].x - 10
+  snakeHead = {x: snake[0].x + snakeSpeed, y: snake[0].y};
+  snake.unshift(snakeHead);
+  snake.pop();
        break;
       case 40:
   console.log('down was pressed');
-  snake[0].y += snakeSpeed;
-  snake[1].y = snake[0].y - 10
-  snake[1].x = snake[0].x
-  snake[2].y = snake[1].y - 10
-  snake[2].x = snake[1].x
+  snakeHead = {x: snake[0].x, y: snake[0].y + snakeSpeed};
+  snake.unshift(snakeHead);
+  snake.pop();
       break;
 }};
 
