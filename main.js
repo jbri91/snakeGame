@@ -49,25 +49,28 @@ function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   moveSnake();
-
-  if (
-    snake[0].x == canvas.width ||
-    snake[0].x < 0 ||
-    snake[0].y == canvas.height ||
-    snake[0].y < 0
-  ) {
-    alert("You hit the wall. YOU LOSE!");
-  }
-  for (i = 1; i < snake.length; i++) {
-    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-      alert("You hit yourself! YOU LOSE!");
-    }
-  }
   drawSnake();
   eatApple();
   drawApple();
   addSnakeBody();
   appleReset();
+  collision();
+}
+
+function collision() {
+if (
+  snake[0].x == canvas.width ||
+  snake[0].x < 0 ||
+  snake[0].y == canvas.height ||
+  snake[0].y < 0
+) {
+  alert("You hit the wall. YOU LOSE!");
+}
+for (i = 1; i < snake.length; i++) {
+  if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+    alert("You hit yourself! YOU LOSE!");
+  }
+}
 }
 
 function moveSnake() {
