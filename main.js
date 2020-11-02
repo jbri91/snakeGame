@@ -41,7 +41,7 @@ function addSnakeBody() {
     snake[0].y < appleY &&
     snake[0].y > appleY - 15
   ) {
-    snake.push(10, 10);
+    snake.push(20, 20);
   }
 }
 
@@ -58,19 +58,19 @@ function drawEverything() {
 }
 
 function collision() {
-if (
-  snake[0].x == canvas.width ||
-  snake[0].x < 0 ||
-  snake[0].y == canvas.height ||
-  snake[0].y < 0
-) {
-  alert("You hit the wall. YOU LOSE!");
-}
-for (i = 1; i < snake.length; i++) {
-  if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-    alert("You hit yourself! YOU LOSE!");
+  if (
+    snake[0].x == canvas.width ||
+    snake[0].x < 0 ||
+    snake[0].y == canvas.height ||
+    snake[0].y < 0
+  ) {
+    alert("You hit the wall. YOU LOSE!");
   }
-}
+  for (i = 1; i < snake.length; i++) {
+    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+      alert("You hit yourself! YOU LOSE!");
+    }
+  }
 }
 
 function moveSnake() {
