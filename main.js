@@ -61,42 +61,53 @@ function collision() {
   }
   for (i = 1; i < snake.length; i++) {
     if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-    resetSnake();
+      resetSnake();
     }
   }
 }
 
-let direction = 'right';
-function moveSnake() {
-  document.onkeydown = function () {
-    switch (window.event.keyCode) {
-      case 37:
-        snakeHead = { x: snake[0].x - snakeSpeed, y: snake[0].y };
-        snake.unshift(snakeHead);
-        snake.pop();
-        break;
-      case 38:
-        direction = 'up';
-        snakeHead = { x: snake[0].x, y: snake[0].y - snakeSpeed };
-        snake.unshift(snakeHead);
-        snake.pop();
-        break;
-      case 39:
-        direction = 'right'; 
-        snakeHead = { x: snake[0].x + snakeSpeed, y: snake[0].y };
-        snake.unshift(snakeHead);
-        snake.pop();
-        break;
-      case 40:
-        direction = 'down';
-        snakeHead = {x: snake[0].x, y: snake[0].y + snakeSpeed};
-        snake.unshift(snakeHead);
-        snake.pop();
-        break;
-    } 
-  };
-}
+let direction = null;
+document.onkeydown = function (e) {
+  switch (window.event.keyCode) {
+    case 37:
+      direction = "left";
+      break;
+    case 38:
+      direction = "up";
+      e.preventDefault();
+      break;
+    case 39:
+      direction = "right";
+      break;
+    case 40:
+      direction = "down";
+      e.preventDefault();
+      break;
+  }
+};
 
+function moveSnake() {
+  if (direction == "right") {
+    snakeHead = { x: snake[0].x + snakeSpeed, y: snake[0].y };
+    snake.unshift(snakeHead);
+    snake.pop();
+  }
+  if (direction == "left") {
+    snakeHead = { x: snake[0].x - snakeSpeed, y: snake[0].y };
+    snake.unshift(snakeHead);
+    snake.pop();
+  }
+  if (direction == "up") {
+    snakeHead = { x: snake[0].x, y: snake[0].y - snakeSpeed };
+    snake.unshift(snakeHead);
+    snake.pop();
+  }
+  if (direction == "down") {
+    snakeHead = { x: snake[0].x, y: snake[0].y + snakeSpeed };
+    snake.unshift(snakeHead);
+    snake.pop();
+  }
+}
 
 function drawSnake() {
   for (let i = 0; i < snake.length; i++) {
@@ -108,6 +119,7 @@ function drawSnake() {
 
 function resetSnake() {
   alert("You Crashed! YOU LOSE!");
+  direction = null;
   points = 0;
   snake = [
     { x: 400, y: 300 },
@@ -153,8 +165,8 @@ function eatApple() {
   ) {
     console.log("The snake ate the apple");
     points++;
-    if(points > highPoints) {
-    highPoints++;
+    if (points > highPoints) {
+      highPoints++;
     }
     score.innerText = "Score: " + points;
     highScore.innerText = "High Score: " + highPoints;
@@ -163,17 +175,15 @@ function eatApple() {
 }
 
 function saveHighScore() {
-  localStorage.setItem('HighScore',highPoints);
+  localStorage.setItem("HighScore", highPoints);
 }
 
 function retrieveHighScore() {
- return localStorage.getItem('HighScore')
+  return localStorage.getItem("HighScore");
 }
 
-
-highPoints = localStorage.getItem('HighScore')
+highPoints = localStorage.getItem("HighScore");
 if (highPoints == null) {
   highPoints = 0;
 }
-highScore.innerText = 'High Score: ' + highPoints;
-
+highScore.innerText = "High Score: " + highPoints;

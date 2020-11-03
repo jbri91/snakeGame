@@ -1,38 +1,38 @@
 #gameCanvas {
-    border: 10px solid darkgreen;
+  border: 10px solid darkgreen;
 }
 h1 {
-    font-size: 70px;
-    color: darkgreen;
-    text-align: center;
+  font-size: 70px;
+  color: darkgreen;
+  text-align: center;
 }
 
 h2 {
-    font-size: 30px;
-    text-align: center;
+  font-size: 30px;
+  text-align: center;
 }
 
 h3 {
-    font-size: 30px;
-    text-align: center;;
+  font-size: 30px;
+  text-align: center;
 }
 
 canvas {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 h4 {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 ol {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 body {
-    background-color: gray;;
+  background-color: gray;
 }
