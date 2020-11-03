@@ -12,12 +12,6 @@ let snake = [
   { x: 360, y: 300 },
 ];
 
-let snakeCopy = [
-  { x: 400, y: 300 },
-  { x: 390, y: 300 },
-  { x: 380, y: 300 },
-];
-
 let snakeLength = 10;
 let snakeWidth = 10;
 let snakeSpeed = 10;
@@ -73,30 +67,32 @@ function collision() {
   }
 }
 
+let direction = 'right';
+
 function moveSnake() {
   document.onkeydown = function () {
     switch (window.event.keyCode) {
       case 37:
-        console.log("Left was pressed");
+        direction = 'left';
         snakeHead = { x: snake[0].x - snakeSpeed, y: snake[0].y };
         snake.unshift(snakeHead);
         snake.pop();
         break;
       case 38:
-        console.log("up was pressed");
+        direction = 'up';
         snakeHead = { x: snake[0].x, y: snake[0].y - snakeSpeed };
         snake.unshift(snakeHead);
         snake.pop();
         break;
       case 39:
-        console.log("right was pressed");
+        direction = 'right'; 
         snakeHead = { x: snake[0].x + snakeSpeed, y: snake[0].y };
         snake.unshift(snakeHead);
         snake.pop();
         break;
       case 40:
-        console.log("down was pressed");
-        snakeHead = { x: snake[0].x, y: snake[0].y + snakeSpeed };
+        direction = 'down';
+        snakeHead = {x: snake[0].x, y: snake[0].y + snakeSpeed};
         snake.unshift(snakeHead);
         snake.pop();
         break;
@@ -164,5 +160,18 @@ function eatApple() {
     }
     score.innerText = "Score: " + points;
     highScore.innerText = "High Score: " + highPoints;
+    saveHighScore();
   }
 }
+
+function saveHighScore() {
+  localStorage.setItem('HighScore',highPoints);
+}
+
+function retrieveHighScore() {
+ return localStorage.getItem('HighScore')
+}
+
+highPoints = localStorage.getItem('HighScore')
+highScore.innerText = 'High Score: ' + highPoints;
+
