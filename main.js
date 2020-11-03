@@ -172,6 +172,10 @@ function retrieveHighScore() {
  return localStorage.getItem('HighScore')
 }
 
+
 highPoints = localStorage.getItem('HighScore')
+if (highPoints == null) {
+  highPoints = 0;
+}
 highScore.innerText = 'High Score: ' + highPoints;
 
