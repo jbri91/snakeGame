@@ -2,7 +2,7 @@
 
 Classic Snake Game created with HTML, CSS and JavaScript
 
-Click [here](https://https://jbri91.github.io/calculator/) to try out the calculator!
+Click [here](https://jbri91.github.io/snakeGame/) to try and get a high score!
 
 ![Classic Snake Game](/snake_game.png)
 
