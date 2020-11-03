@@ -71,7 +71,6 @@ function moveSnake() {
   document.onkeydown = function () {
     switch (window.event.keyCode) {
       case 37:
-        direction = 'left';
         snakeHead = { x: snake[0].x - snakeSpeed, y: snake[0].y };
         snake.unshift(snakeHead);
         snake.pop();
