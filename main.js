@@ -3,7 +3,6 @@ let canvasContext;
 let appleX = Math.floor(Math.random() * (800 - 20) + 20);
 let appleY = Math.floor(Math.random() * (500 - 20) + 20);
 let appleRadius = 6;
-let showingLoseScreen = false;
 let snake = [
   { x: 400, y: 300 },
   { x: 390, y: 300 },
@@ -68,7 +67,6 @@ function collision() {
 }
 
 let direction = 'right';
-
 function moveSnake() {
   document.onkeydown = function () {
     switch (window.event.keyCode) {
@@ -96,9 +94,10 @@ function moveSnake() {
         snake.unshift(snakeHead);
         snake.pop();
         break;
-    }
+    } 
   };
 }
+
 
 function drawSnake() {
   for (let i = 0; i < snake.length; i++) {
