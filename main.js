@@ -64,12 +64,10 @@ function collision() {
     snake[0].y == canvas.height ||
     snake[0].y < 0
   ) {
-    alert("You hit the wall. YOU LOSE!");
     resetSnake();
   }
   for (i = 1; i < snake.length; i++) {
     if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-      alert("You hit yourself! YOU LOSE!");
     resetSnake();
     }
   }
@@ -115,7 +113,16 @@ function drawSnake() {
 }
 
 function resetSnake() {
-  
+  alert("You Crashed! YOU LOSE!");
+  snake = [
+    { x: 400, y: 300 },
+    { x: 390, y: 300 },
+    { x: 380, y: 300 },
+    { x: 370, y: 300 },
+    { x: 360, y: 300 },
+  ];
+  drawSnake();
+  appleReset();
 }
 
 function drawApple() {
