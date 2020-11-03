@@ -41,7 +41,7 @@ function addSnakeBody() {
     snake[0].y < appleY &&
     snake[0].y > appleY - 15
   ) {
-    snake.push(20, 20);
+    snake.push(10);
   }
 }
 
@@ -114,6 +114,7 @@ function drawSnake() {
 
 function resetSnake() {
   alert("You Crashed! YOU LOSE!");
+  points = 0;
   snake = [
     { x: 400, y: 300 },
     { x: 390, y: 300 },
@@ -122,7 +123,9 @@ function resetSnake() {
     { x: 360, y: 300 },
   ];
   drawSnake();
-  appleReset();
+  appleX = Math.floor(Math.random() * (800 - 20) + 20);
+  appleY = Math.floor(Math.random() * (500 - 20) + 20);
+  score.innerText = "Score: " + points;
 }
 
 function drawApple() {
@@ -156,7 +159,9 @@ function eatApple() {
   ) {
     console.log("The snake ate the apple");
     points++;
+    if(points > highPoints) {
     highPoints++;
+    }
     score.innerText = "Score: " + points;
     highScore.innerText = "High Score: " + highPoints;
   }
