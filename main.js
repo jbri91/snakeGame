@@ -91,6 +91,9 @@ function moveSnake() {
     snakeHead = { x: snake[0].x + snakeSpeed, y: snake[0].y };
     snake.unshift(snakeHead);
     snake.pop();
+    if(direction == 'left') {
+      direction = null;
+    }
   }
   if (direction == "left") {
     snakeHead = { x: snake[0].x - snakeSpeed, y: snake[0].y };
