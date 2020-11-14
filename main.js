@@ -1,46 +1,31 @@
-let canvas;
-let canvasContext;
-let appleX = Math.floor(Math.random() * (800 - 20) + 20);
-let appleY = Math.floor(Math.random() * (500 - 20) + 20);
-let appleRadius = 6;
-let snake = [
-  { x: 400, y: 300 },
-  { x: 390, y: 300 },
-  { x: 380, y: 300 },
-  { x: 370, y: 300 },
-  { x: 360, y: 300 },
-];
+window.onload = () => setInterval(() => init(), 50);
+let GRID_SIZE = 10;
 
-let snakeLength = 10;
-let snakeWidth = 10;
-let snakeSpeed = 10;
+const canvas = document.getElementById("gameCanvas");
+const canvasContext = canvas.getContext("2d");
 
 const score = document.getElementById("score");
 const highScore = document.getElementById("highScore");
 
-window.onload = function () {
-  canvas = document.getElementById("gameCanvas");
-  canvasContext = canvas.getContext("2d");
-  let framesPerSecond = 30;
-  setInterval(function () {
-    drawEverything();
-  }, 1000 / framesPerSecond);
-};
-
-function addSnakeBody() {
-  if (
-    snake[0].x < appleX &&
-    snake[0].x > appleX - 15 &&
-    snake[0].y < appleY &&
-    snake[0].y > appleY - 15
-  ) {
-    snake.push(10);
-  }
+let apple = {
+  x: Math.floor(Math.random() * (800/10) * 10),
+  y: Math.floor(Math.random() * (600/10) * 10),
+  radius: 6
 }
 
-function drawEverything() {
-  canvasContext.fillStyle = "black";
-  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+let snake = {
+  body: [
+    { x: 400, y: 300 },
+    { x: 390, y: 300 },
+    { x: 380, y: 300 },
+    { x: 370, y: 300 },
+    { x: 360, y: 300 },
+  ],
+  direction: undefined
+}
+
+function init() {
+  drawCanvas();
   moveSnake();
   drawSnake();
   eatApple();
@@ -49,122 +34,51 @@ function drawEverything() {
   appleReset();
   collision();
 }
-
-function collision() {
-  if (
-    snake[0].x == canvas.width ||
-    snake[0].x < 0 ||
-    snake[0].y == canvas.height ||
-    snake[0].y < 0
-  ) {
-    resetSnake();
-  }
-  for (i = 1; i < snake.length; i++) {
-    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-      resetSnake();
-    }
-  }
+function drawCanvas() {
+  canvasContext.fillStyle = "black";
+  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-let direction = null;
-document.onkeydown = function (e) {
-  switch (window.event.keyCode) {
-    case 37:
-      direction = "left";
-      break;
-    case 38:
-      direction = "up";
-      e.preventDefault();
-      break;
-    case 39:
-      direction = "right";
-      break;
-    case 40:
-      direction = "down";
-      e.preventDefault();
-      break;
-  }
-};
-
 function moveSnake() {
-  if (direction == "right") {
-    snakeHead = { x: snake[0].x + snakeSpeed, y: snake[0].y };
-    snake.unshift(snakeHead);
-    snake.pop();
-    if(direction == 'left') {
-      direction = null;
+  if (snake.direction == "right") {
+    snakeHead = { x: snake.body[0].x + GRID_SIZE, y: snake.body[0].y };
+    snake.body.unshift(snakeHead);
+    snake.body.pop();
+    if(snake.direction == 'left') {
+      snake.direction = null;
     }
   }
-  if (direction == "left") {
-    snakeHead = { x: snake[0].x - snakeSpeed, y: snake[0].y };
-    snake.unshift(snakeHead);
-    snake.pop();
+  if (snake.direction == "left") {
+    snakeHead = { x: snake.body[0].x - GRID_SIZE, y: snake.body[0].y };
+    snake.body.unshift(snakeHead);
+    snake.body.pop();
   }
-  if (direction == "up") {
-    snakeHead = { x: snake[0].x, y: snake[0].y - snakeSpeed };
-    snake.unshift(snakeHead);
-    snake.pop();
+  if (snake.direction == "up") {
+    snakeHead = { x: snake.body[0].x, y: snake.body[0].y - GRID_SIZE };
+    snake.body.unshift(snakeHead);
+    snake.body.pop();
   }
-  if (direction == "down") {
-    snakeHead = { x: snake[0].x, y: snake[0].y + snakeSpeed };
-    snake.unshift(snakeHead);
-    snake.pop();
+  if (snake.direction == "down") {
+    snakeHead = { x: snake.body[0].x, y: snake.body[0].y + GRID_SIZE };
+    snake.body.unshift(snakeHead);
+    snake.body.pop();
   }
 }
 
 function drawSnake() {
-  for (let i = 0; i < snake.length; i++) {
-    const snakePart = snake[i];
+  for (let i = 0; i < snake.body.length; i++) {
+    const snakePart = snake.body[i];
     canvasContext.fillStyle = "green";
-    canvasContext.fillRect(snakePart.x, snakePart.y, snakeLength, snakeWidth);
+    canvasContext.fillRect(snakePart.x, snakePart.y, GRID_SIZE, GRID_SIZE);
   }
 }
-
-function resetSnake() {
-  alert("You Crashed! YOU LOSE!");
-  direction = null;
-  points = 0;
-  snake = [
-    { x: 400, y: 300 },
-    { x: 390, y: 300 },
-    { x: 380, y: 300 },
-    { x: 370, y: 300 },
-    { x: 360, y: 300 },
-  ];
-  drawSnake();
-  appleX = Math.floor(Math.random() * (800 - 20) + 20);
-  appleY = Math.floor(Math.random() * (500 - 20) + 20);
-  score.innerText = "Score: " + points;
-}
-
-function drawApple() {
-  canvasContext.fillStyle = "red";
-  canvasContext.beginPath();
-  canvasContext.arc(appleX, appleY, appleRadius, 0, Math.PI * 2, true);
-  canvasContext.fill();
-}
-
-function appleReset() {
-  if (
-    snake[0].x < appleX &&
-    snake[0].x > appleX - 15 &&
-    snake[0].y < appleY &&
-    snake[0].y > appleY - 15
-  ) {
-    appleX = Math.floor(Math.random() * (800 - 20) + 20);
-    appleY = Math.floor(Math.random() * (500 - 20) + 20);
-  }
-}
-
-let points = 0;
-let highPoints = 0;
 
 function eatApple() {
   if (
-    snake[0].x < appleX &&
-    snake[0].x > appleX - 15 &&
-    snake[0].y < appleY &&
-    snake[0].y > appleY - 15
+    snake.body[0].x < apple.x &&
+    snake.body[0].x > apple.x - 15 &&
+    snake.body[0].y < apple.y &&
+    snake.body[0].y > apple.y - 15
   ) {
     console.log("The snake ate the apple");
     points++;
@@ -176,6 +90,94 @@ function eatApple() {
     saveHighScore();
   }
 }
+
+function drawApple() {
+  canvasContext.fillStyle = "red";
+  canvasContext.beginPath();
+  canvasContext.arc(apple.x, apple.y, apple.radius, 0, Math.PI * 2, true);
+  canvasContext.fill();
+}
+
+function addSnakeBody() {
+  if (
+    snake.body[0].x < apple.x &&
+    snake.body[0].x > apple.x - 15 &&
+    snake.body[0].y < apple.y &&
+    snake.body[0].y > apple.y - 15
+  ) {
+    snake.body.push(10);
+  }
+}
+
+function appleReset() {
+  if (
+    snake.body[0].x < apple.x &&
+    snake.body[0].x > apple.x - 15 &&
+    snake.body[0].y < apple.y &&
+    snake.body[0].y > apple.y - 15
+  ) {
+    apple.x = Math.floor(Math.random() * (800 - 20) + 20);
+    apple.y = Math.floor(Math.random() * (500 - 20) + 20);
+  }
+}
+
+function collision() {
+  if (
+    snake.body[0].x == canvas.width ||
+    snake.body[0].x < 0 ||
+    snake.body[0].y == canvas.height ||
+    snake.body[0].y < 0
+  ) {
+    resetSnake();
+  }
+  for (i = 1; i < snake.body.length; i++) {
+    if (snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
+      resetSnake();
+    }
+  }
+}
+
+document.onkeydown = function (e) {
+  switch (window.event.keyCode) {
+    case 37:
+      snake.direction = "left";
+      break;
+    case 38:
+      snake.direction = "up";
+      e.preventDefault();
+      break;
+    case 39:
+      snake.direction = "right";
+      break;
+    case 40:
+      snake.direction = "down";
+      e.preventDefault();
+      break;
+  }
+};
+
+
+
+function resetSnake() {
+  alert("You Crashed! YOU LOSE!");
+  snake.direction = null;
+  points = 0;
+  snake.body = [
+    { x: 400, y: 300 },
+    { x: 390, y: 300 },
+    { x: 380, y: 300 },
+    { x: 370, y: 300 },
+    { x: 360, y: 300 },
+  ];
+  drawSnake();
+  apple.x = Math.floor(Math.random() * (800 - 20) + 20);
+  apple.y = Math.floor(Math.random() * (500 - 20) + 20);
+  score.innerText = "Score: " + points;
+}
+
+let points = 0;
+let highPoints = 0;
+
 
 function saveHighScore() {
   localStorage.setItem("HighScore", highPoints);
